@@ -219,7 +219,7 @@ body {
 .action-buttons {
     margin-top: 40px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 12px;
 }
 
@@ -309,18 +309,17 @@ body {
     }
 
     .action-buttons {
-        flex-direction: row;
+        flex-direction: column-reverse;
         margin-top: 50px;
+        max-width: 400px;
     }
 
     .btn-secondary {
-        flex: 0 0 auto;
-        min-width: 150px;
+        width: 100%;
     }
 
     .btn-primary {
-        flex: 0 0 auto;
-        min-width: 180px;
+        width: 100%;
     }
 
     .info-box {
@@ -442,11 +441,18 @@ body {
     .action-buttons {
         margin-top: 60px;
         gap: 16px;
+        flex-direction: column-reverse;
+        max-width: 400px;
     }
 
     .btn-secondary {
         padding: 16px 40px;
         font-size: 18px;
+        width: 100%;
+    }
+
+    .btn-primary {
+        width: 100%;
     }
 
     .choice-buttons {
