@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organisatie - ING</title>
+    <link rel="stylesheet" href="prototype.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="sidebar-title">Beheer Bevoegdheden</h2>
+
+            <ul class="steps">
+                <li class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Organisatie</div>
+                </li>
+                <li class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Contactgegevens</div>
+                </li>
+                <li class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Ondertekenen en opsturen</div>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="start.html" class="close-link">✕ Sluiten</a>
+
+            <h1 class="section-title">Organisatie</h1>
+
+            <p class="form-question">
+                Staat je organisatie ingeschreven bij de KvK?
+            </p>
+
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="kvk-ja" name="kvk" value="ja" checked>
+                    <label for="kvk-ja">Ja</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="kvk-nee" name="kvk" value="nee">
+                    <label for="kvk-nee">Nee</label>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">ℹ️</span>
+                <div class="info-text">
+                    Voor wijzigingen van vertegenwoordigers eerst bij de Kamer van Koophandel door,
+                    anders kunnen wij ze niet verwerken.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">KvK nummer</label>
+                <input type="text" class="form-input" maxlength="8">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">IBAN rekening organisatie</label>
+                <input type="text" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Naam organisatie</label>
+                <input type="text" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Rechtsvorm</label>
+                <select class="form-select">
+                    <option>Selecteer</option>
+                    <option>B.V.</option>
+                    <option>N.V.</option>
+                    <option>V.O.F.</option>
+                    <option>Eenmanszaak</option>
+                    <option>Stichting</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Hoe ben je bevoegd?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="zelfstandig" name="bevoegd" value="zelfstandig" checked>
+                        <label for="zelfstandig">Zelfstandig (je mag zelf wijzigingen doorvoeren)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="gezamenlijk" name="bevoegd" value="gezamenlijk">
+                        <label for="gezamenlijk">Gezamenlijk (je dient samen wijzigingen door te voeren)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Eerste ondertekenende vertegenwoordiger</label>
+                <span class="form-label-small">Naam zoals op identiteitsbewijs</span>
+                <input type="text" class="form-input">
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">ℹ️</span>
+                <div class="info-text">
+                    Er zijn kosten verbonden aan het toevoegen van vertegenwoordigers en gemachtigden.
+                    <a href="#">Lees hier</a> meer over de kosten.
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="window.location.href='stap1.html'">
+                    ← Vorige
+                </button>
+                <button class="btn-primary" onclick="window.location.href='stap3.html'">
+                    Volgende →
+                </button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

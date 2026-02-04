@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ondertekenen - ING</title>
+    <link rel="stylesheet" href="prototype.css">
+    <style>
+        .signature-section {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .signature-box {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            background-color: white;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 16px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .signature-box:hover {
+            border-color: #FF6200;
+        }
+
+        .signature-box.signed {
+            border-color: #00A755;
+            border-style: solid;
+            color: #00A755;
+            font-weight: bold;
+        }
+
+        .checkbox-agreement {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        .checkbox-agreement input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            accent-color: #FF6200;
+            cursor: pointer;
+        }
+
+        .checkbox-agreement label {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .summary-box {
+            background-color: #FFF5F0;
+            border-left: 4px solid #FF6200;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .summary-title {
+            font-weight: bold;
+            color: #FF6200;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="sidebar-title">Beheer Bevoegdheden</h2>
+
+            <ul class="steps">
+                <li class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Organisatie</div>
+                </li>
+                <li class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Contactgegevens</div>
+                </li>
+                <li class="step active">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Ondertekenen en opsturen</div>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="start.html" class="close-link">✕ Sluiten</a>
+
+            <h1 class="section-title">Ondertekenen en opsturen</h1>
+
+            <div class="summary-box">
+                <div class="summary-title">Samenvatting van uw aanvraag</div>
+                <div class="summary-text">
+                    U staat op het punt om een nieuwe gemachtigde zonder particuliere ING rekening toe te voegen.
+                    Controleer de ingevulde gegevens en onderteken digitaal om de aanvraag in te dienen.
+                </div>
+            </div>
+
+            <div class="info-box">
+                <span class="info-icon">ℹ️</span>
+                <div class="info-text">
+                    Door digitaal te ondertekenen bevestigt u dat alle opgegeven informatie correct en volledig is.
+                    Uw aanvraag wordt direct naar ING verzonden voor verwerking.
+                </div>
+            </div>
+
+            <div class="signature-section">
+                <h3 style="margin-bottom: 16px; color: #333; font-size: 18px;">Digitale handtekening</h3>
+
+                <div class="form-group">
+                    <label class="form-label">Volledige naam</label>
+                    <input type="text" class="form-input" placeholder="Uw voor- en achternaam" id="signerName">
+                </div>
+
+                <div class="signature-box" id="signatureBox" onclick="signDocument()">
+                    Klik hier om digitaal te ondertekenen
+                </div>
+
+                <div class="checkbox-agreement">
+                    <input type="checkbox" id="agreement" required>
+                    <label for="agreement">
+                        Ik verklaar dat de opgegeven informatie correct is en dat ik bevoegd ben om deze gemachtigde
+                        toe te voegen. Ik heb de <a href="#" style="color: #FF6200; text-decoration: underline;">voorwaarden</a>
+                        gelezen en ga hiermee akkoord.
+                    </label>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="window.location.href='stap3.html'">
+                    ← Vorige
+                </button>
+                <button class="btn-primary" id="submitBtn" onclick="submitForm()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    Aanvraag indienen
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let isSigned = false;
+
+        function signDocument() {
+            const signatureBox = document.getElementById('signatureBox');
+            const signerName = document.getElementById('signerName').value.trim();
+
+            if (!signerName) {
+                alert('Vul eerst uw volledige naam in voordat u ondertekent.');
+                document.getElementById('signerName').focus();
+                return;
+            }
+
+            isSigned = true;
+            signatureBox.classList.add('signed');
+            signatureBox.innerHTML = '✓ Ondertekend door: ' + signerName;
+            signatureBox.style.cursor = 'default';
+            signatureBox.onclick = null;
+
+            checkFormComplete();
+        }
+
+        function checkFormComplete() {
+            const agreement = document.getElementById('agreement').checked;
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (isSigned && agreement) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+                submitBtn.style.cursor = 'not-allowed';
+            }
+        }
+
+        function submitForm() {
+            if (!isSigned) {
+                alert('U moet eerst digitaal ondertekenen voordat u de aanvraag kunt indienen.');
+                return;
+            }
+
+            const agreement = document.getElementById('agreement').checked;
+            if (!agreement) {
+                alert('U moet akkoord gaan met de voorwaarden voordat u de aanvraag kunt indienen.');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '⏳ Bezig met indienen...';
+            submitBtn.disabled = true;
+
+            // Simulate submission
+            setTimeout(function() {
+                window.location.href = 'succes.html';
+            }, 1000);
+        }
+
+        // Enable/disable submit button when agreement checkbox changes
+        document.getElementById('agreement').addEventListener('change', checkFormComplete);
+    </script>
+</body>
+</html>

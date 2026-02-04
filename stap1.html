@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemachtigde - ING</title>
+    <link rel="stylesheet" href="prototype.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="sidebar-title">Gemachtigde aanmelden</h2>
+
+            <ul class="steps">
+                <li class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Gemachtigde</div>
+                </li>
+                <li class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Organisatie</div>
+                </li>
+                <li class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Contactgegevens</div>
+                </li>
+                <li class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Ondertekenen en opsturen</div>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="start.html" class="close-link">✕ Sluiten</a>
+
+            <h1 class="section-title">Gemachtigde</h1>
+
+            <div class="info-box">
+                <span class="info-icon">ℹ️</span>
+                <div class="info-text">
+                    Er zijn kosten verbonden aan het toevoegen van vertegenwoordigers en gemachtigden.
+                    <a href="#">Lees hier</a> meer over de kosten.
+                </div>
+            </div>
+
+            <p class="form-question">
+                Heeft de aan te melden gemachtigde een particuliere rekening bij ING?
+            </p>
+
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="ja" name="particulier" value="ja">
+                    <label for="ja">Ja</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="nee" name="particulier" value="nee" checked>
+                    <label for="nee">Nee</label>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="window.location.href='start.html'">
+                    ← Vorige
+                </button>
+                <button class="btn-primary" onclick="window.location.href='stap2.html'">
+                    Volgende →
+                </button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
